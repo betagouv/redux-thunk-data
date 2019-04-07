@@ -9,9 +9,10 @@ See the full [documentation](https://redux-thunk-data.netlify.com) for further c
 
 ## Basic Usage
 
-You need to install a redux-thunk setup:
+You need to install a redux-thunk setup with the dataReducer from `fetch-normalize-data`:
 
 ```javascript
+import { createDataReducer } from 'fetch-normalize-data'
 import {
   applyMiddleware,
   combineReducers,
