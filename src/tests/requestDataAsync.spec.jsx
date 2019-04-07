@@ -69,24 +69,27 @@ const FoosContainer = connect(mapStateToProps)(Foos)
 
 jest.mock('fetch-normalize-data', () => {
   const actualModule = jest.requireActual('fetch-normalize-data')
+  const mockFetchData = (url, config) => {
+    if (url === 'https://momarx.com/failFoos') {
+      return {
+        payload: { errors: [] },
+        status: 400
+      }
+    }
+    if (url === 'https://momarx.com/successFoos') {
+      return {
+        payload: { data: mockFoos },
+        status: 200
+      }
+    }
+    return actualModule.fetchData(url, config)
+  }
   return {
     ...actualModule,
-    fetchData: async (url, config) => {
-      await setTimeout()
-      if (url === 'https://momarx.com/failFoos') {
-        return {
-          payload: { errors: [] },
-          status: 400
-        }
-      }
-      if (url === 'https://momarx.com/successFoos') {
-        return {
-          payload: { data: mockFoos },
-          status: 200
-        }
-      }
-      return actualModule.fetchData(url, config)
-    }
+    fetchToSuccessOrFailData: (reducer, config) =>
+      actualModule.fetchToSuccessOrFailData(reducer,
+        Object.assign({}, config, { fetchData: mockFetchData})
+      )
   }
 })
 

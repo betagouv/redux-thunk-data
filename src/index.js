@@ -1,2 +1,1 @@
-export * from './createRequestDataAsync'
-export * from './fetchToSuccessOrFailData'
+export * from './requestDataAsync'
