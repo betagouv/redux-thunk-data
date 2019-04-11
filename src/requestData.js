@@ -1,12 +1,12 @@
-import { fetchToSuccessOrFailData, requestData } from 'fetch-normalize-data'
+import { fetchToSuccessOrFailData, requestData as requestDataCreator } from 'fetch-normalize-data'
 
-export const requestDataAsync = config =>
+export const requestData = config =>
   (dispatch, getState, argument) => {
     const { data } = getState()
     const reducer = [data, dispatch]
     const fetchConfig = Object.assign({}, config, argument)
-    dispatch(requestData(config))
+    dispatch(requestDataCreator(config))
     return fetchToSuccessOrFailData(reducer, fetchConfig)
   }
 
-export default requestDataAsync
+export default requestData

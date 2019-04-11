@@ -1,1 +1,1 @@
-export * from './requestDataAsync'
+export * from './requestData'

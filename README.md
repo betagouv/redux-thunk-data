@@ -44,8 +44,8 @@ class Foos extends Component {
     const { dispatch } = this.props
     dispatch(requestDataAsync({
       apiPath: '/foos',
-      handleFail: () => this.setState({ error: action.error }),
-      method:'GET'
+      handleFail: (state, action) =>
+        this.setState({ error: action.error })
     }))
   }
 

@@ -8,7 +8,7 @@ import { connect, Provider } from 'react-redux'
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunk from 'redux-thunk'
 
-import { requestDataAsync } from '../requestDataAsync'
+import { requestData } from '../requestData'
 
 const mockFoos = [
   { id: "AE", text: "My foo is here", type: "good" },
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({ data: createDataReducer({ foos: [] }) })
 class Foos extends Component {
   componentDidMount () {
     const { apiPath, dispatch, handleFailExpectation } = this.props
-    dispatch(requestDataAsync({
+    dispatch(requestData({
       apiPath,
       handleFail: handleFailExpectation,
       stateKey: 'foos'

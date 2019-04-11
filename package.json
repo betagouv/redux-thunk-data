@@ -3,7 +3,6 @@
     "eslint": "^5.8.0",
     "fetch-normalize-data": "0.0.12",
     "prop-types": "^15.6.2",
-    "redux-thunk": "^2.3.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -42,7 +41,8 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.3",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
   },
   "keywords": [
     "redux",
