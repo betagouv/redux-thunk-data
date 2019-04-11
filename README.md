@@ -32,7 +32,7 @@ in the state.data
 
 ```javascript
 import React, { Fragment } from 'react'
-import { requestDataAsync } from 'redux-thunk-saga'
+import { requestData } from 'redux-thunk-saga'
 
 class Foos extends Component {
   constructor () {
@@ -42,7 +42,7 @@ class Foos extends Component {
 
   componentDidMount () {
     const { dispatch } = this.props
-    dispatch(requestDataAsync({
+    dispatch(requestData({
       apiPath: '/foos',
       handleFail: (state, action) =>
         this.setState({ error: action.error })
@@ -84,7 +84,7 @@ constructor () {
 
 componentDidMount () {
   const { dispatch } = this.props
-  dispatch(requestDataAsync({
+  dispatch(requestData({
     apiPath: '/foos',
     handleFail: () => this.setState({ error: action.error }),
     handleSuccess: () => this.setState({ foos: action.data }),
