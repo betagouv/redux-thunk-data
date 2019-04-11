@@ -12,13 +12,13 @@ See the full [documentation](https://redux-thunk-data.netlify.com) for further c
 You need to install a redux-thunk setup with the dataReducer from `fetch-normalize-data`:
 
 ```javascript
-import { createDataReducer } from 'fetch-normalize-data'
 import {
   applyMiddleware,
   combineReducers,
   createStore
 } from 'redux'
 import { thunk } from 'redux-thunk'
+import { createDataReducer } from 'redux-thunk-data'
 
 const storeEnhancer = applyMiddleware(
   thunk.withExtraArgument({ rootUrl: "https://momarx.com" })
@@ -32,7 +32,7 @@ in the state.data
 
 ```javascript
 import React, { Fragment } from 'react'
-import { requestData } from 'redux-thunk-saga'
+import { requestData } from 'redux-thunk-data'
 
 class Foos extends Component {
   constructor () {
