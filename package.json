@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "eslint": "^5.8.0",
-    "fetch-normalize-data": "0.0.12",
+    "fetch-normalize-data": "1.2.0",
+    "handlebars": "4.1.2",
     "prop-types": "^15.6.2",
     "uuid": "^3.3.2"
   },
@@ -50,7 +51,7 @@
     "data",
     "normalizer"
   ],
-  "license": "MIT",
+  "license": "Mozilla Public License",
   "main": "lib/index.js",
   "name": "redux-thunk-data",
   "private": false,
