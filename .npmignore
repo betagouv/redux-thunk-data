@@ -1,0 +1,6 @@
+.circleci/
+doc/
+examples/
+src/
+
+icon.png

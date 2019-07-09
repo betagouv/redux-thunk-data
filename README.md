@@ -1,4 +1,4 @@
-# redux-thunk-data
+<img alt="redux-thunk-data logo" src="https://raw.githubusercontent.com/betagouv/redux-thunk-data/master/icon.png" height=60/>
 
 A lib for fetching normalized data in a redux store through thunks.
 
