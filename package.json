@@ -1,10 +1,6 @@
 {
   "dependencies": {
-    "eslint": "^5.8.0",
-    "fetch-normalize-data": "1.2.3",
-    "handlebars": "4.1.2",
-    "prop-types": "^15.6.2",
-    "uuid": "^3.3.2"
+    "fetch-normalize-data": "1.2.3"
   },
   "description": "A lib for fetching normalized data in a redux store through thunks.",
   "devDependencies": {
@@ -22,24 +18,17 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.22.0",
-    "concurrently": "^4.1.0",
     "enzyme": "^3.6.0",
-    "enzyme-adapter-react-15": "^1.1.0",
     "enzyme-adapter-react-16": "^1.5.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.1.0",
-    "eslint-plugin-flowtype": "^2.34.1",
     "eslint-plugin-import": "^2.6.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.1.0",
-    "jest": "^24.5.0",
+    "jest": "^24.8.0",
     "jest-fetch-mock": "^2.1.1",
     "nodemon": "^1.18.10",
-    "prettier": "1.12.1",
-    "prettier-eslint": "^8.8.2",
-    "prettier-stylelint": "^0.4.2",
-    "pretty-quick": "^1.6.0",
+    "prettier-eslint": "^9.0.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.3",
@@ -61,7 +50,7 @@
     "url": "https://github.com/betagouv/redux-thunk-data"
   },
   "scripts": {
-    "compile": "rm -rf lib && babel --plugins transform-class-properties,transform-object-rest-spread --presets env,react -d lib/ src/",
+    "compile": "rm -rf lib && babel --plugins transform-class-properties,transform-object-rest-spread --presets env,react -d lib/ --ignore tests src/",
     "postinstall": "if [ -d \"src/\" ]; then npm run compile; fi",
     "precommit": "./precommit.sh",
     "prettier": "$(yarn bin)/prettier --write 'src/**/*.js'",
