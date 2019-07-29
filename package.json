@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "fetch-normalize-data": "1.2.3"
+    "fetch-normalize-data": "1.3.2"
   },
   "description": "A lib for fetching normalized data in a redux store through thunks.",
   "devDependencies": {
