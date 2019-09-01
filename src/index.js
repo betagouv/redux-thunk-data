@@ -6,6 +6,7 @@ import {
   SET_DATA,
   assignData,
   deleteData,
+  createDataReducer,
   fetchData,
   getNormalizedDeletedState,
   getNormalizedMergedState,
@@ -21,6 +22,7 @@ export {
   RESET_DATA,
   SET_DATA,
   assignData,
+  createDataReducer,
   deleteData,
   fetchData,
   getNormalizedDeletedState,
@@ -30,5 +32,4 @@ export {
   setData
 }
 
-export * from './createDataReducer'
 export * from './requestData'
