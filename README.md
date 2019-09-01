@@ -17,7 +17,7 @@ import {
   combineReducers,
   createStore
 } from 'redux'
-import { thunk } from 'redux-thunk'
+import thunk from 'redux-thunk'
 import { createDataReducer } from 'redux-thunk-data'
 
 const storeEnhancer = applyMiddleware(
