@@ -1,13 +1,13 @@
 /* eslint-disable no-use-before-define */
 import 'babel-polyfill'
 import { mount } from 'enzyme'
+import { createDataReducer } from 'fetch-normalize-data'
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { connect, Provider } from 'react-redux'
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunk from 'redux-thunk'
 
-import { createDataReducer } from '../createDataReducer'
 import { requestData } from '../requestData'
 
 const mockFoos = [
