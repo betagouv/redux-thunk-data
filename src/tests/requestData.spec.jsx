@@ -72,13 +72,13 @@ jest.mock('fetch-normalize-data', () => {
   const mockFetchData = (url, config) => {
     if (url === 'https://momarx.com/failFoos') {
       return {
-        payload: { errors: [] },
+        errors: [],
         status: 400
       }
     }
     if (url === 'https://momarx.com/successFoos') {
       return {
-        payload: { data: mockFoos },
+        data: mockFoos,
         status: 200
       }
     }
@@ -111,9 +111,14 @@ describe('redux-thunk-data with Foos basic usage', () => {
       )
 
       // then
+      const expectedFoos = mockFoos
+        .filter(mockFoo => mockFoo.type === "good")
+        .map(mockFoo => ({
+          ...mockFoo,
+          __ACTIVITIES__: ["/successFoos"],
+        }))
       function handleSuccessExpectation(foos) {
-        expect(foos).toHaveLength(1)
-        expect(foos[0]).toEqual(mockFoos[0])
+        expect(foos).toEqual(expectedFoos)
         done()
       }
 
