@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "license": "MPL-2.0",
   "dependencies": {
-    "fetch-normalize-data": "1.8.0-rc3"
+    "fetch-normalize-data": "1.8.1"
   },
   "description": "A lib for fetching normalized data in a redux store through thunks.",
   "repository": {
@@ -53,7 +53,7 @@
   ],
   "scripts": {
     "compile": "rm -rf lib && babel --plugins transform-class-properties,transform-object-rest-spread --presets env,react -d lib/ --ignore tests src/",
-    "format:js": "prettier-eslint --write './**/*.{js,jsx}'",
+    "format:js": "prettier-eslint --write './src/**/*.{js,jsx}'",
     "postinstall": "if [ -d \"src/\" ]; then npm run compile; fi",
     "precommit": "./precommit.sh",
     "prettier": "$(yarn bin)/prettier --write 'src/**/*.js'",
