@@ -98,6 +98,12 @@ describe('redux-thunk-data with Foos basic usage', () => {
     it('should render test component whith foo items', done => {
       // given
       const store = createStore(rootReducer, storeEnhancer)
+      const expectedFoos = mockFoos
+        .filter(mockFoo => mockFoo.type === "good")
+        .map(mockFoo => ({
+          ...mockFoo,
+          __ACTIVITIES__: ["/successFoos"],
+        }))
 
       // when
       mount(
@@ -111,12 +117,6 @@ describe('redux-thunk-data with Foos basic usage', () => {
       )
 
       // then
-      const expectedFoos = mockFoos
-        .filter(mockFoo => mockFoo.type === "good")
-        .map(mockFoo => ({
-          ...mockFoo,
-          __ACTIVITIES__: ["/successFoos"],
-        }))
       function handleSuccessExpectation(foos) {
         expect(foos).toEqual(expectedFoos)
         done()
@@ -141,7 +141,10 @@ describe('redux-thunk-data with Foos basic usage', () => {
       )
 
       // then
-      function handleFailExpectation() {
+      function handleFailExpectation(state, action) {
+        const { payload } = action
+        const { errors } = payload
+        expect(errors).toHaveLength(2)
         done()
       }
     })
