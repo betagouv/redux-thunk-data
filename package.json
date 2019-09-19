@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "license": "MPL-2.0",
   "dependencies": {
-    "fetch-normalize-data": "1.8.1"
+    "fetch-normalize-data": "1.8.2"
   },
   "description": "A lib for fetching normalized data in a redux store through thunks.",
   "repository": {
