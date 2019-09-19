@@ -11,26 +11,28 @@ import thunk from 'redux-thunk'
 import { requestData } from '../requestData'
 
 const mockFoos = [
-  { id: "AE", text: "My foo is here", type: "good" },
-  { id: "BF", test: "My other foo also", type: "bad" }
+  { id: 'AE', text: 'My foo is here', type: 'good' },
+  { id: 'BF', test: 'My other foo also', type: 'bad' },
 ]
 
 const storeEnhancer = applyMiddleware(
-  thunk.withExtraArgument({ rootUrl: "https://momarx.com" })
+  thunk.withExtraArgument({ rootUrl: 'https://momarx.com' })
 )
 const rootReducer = combineReducers({ data: createDataReducer({ foos: [] }) })
 
 class Foos extends Component {
-  componentDidMount () {
+  componentDidMount() {
     const { apiPath, dispatch, handleFailExpectation } = this.props
-    dispatch(requestData({
-      apiPath,
-      handleFail: handleFailExpectation,
-      stateKey: 'foos'
-    }))
+    dispatch(
+      requestData({
+        apiPath,
+        handleFail: handleFailExpectation,
+        stateKey: 'foos',
+      })
+    )
   }
 
-  render () {
+  render() {
     const { foos, handleSuccessExpectation } = this.props
 
     if (foos && foos.length) {
@@ -40,9 +42,7 @@ class Foos extends Component {
     return (
       <Fragment>
         {(foos || []).map(foo => (
-          <div key={foo.id}>
-            {foo.text}
-          </div>
+          <div key={foo.id}>{foo.text}</div>
         ))}
       </Fragment>
     )
@@ -51,18 +51,18 @@ class Foos extends Component {
 Foos.defaultProps = {
   foos: null,
   handleFailExpectation: () => ({}),
-  handleSuccessExpectation: () => ({})
+  handleSuccessExpectation: () => ({}),
 }
 Foos.propTypes = {
   apiPath: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
   foos: PropTypes.arrayOf(PropTypes.shape()),
   handleFailExpectation: PropTypes.func,
-  handleSuccessExpectation: PropTypes.func
+  handleSuccessExpectation: PropTypes.func,
 }
 function mapStateToProps(state, ownProps) {
   return {
-    foos: (state.data.foos || []).filter(foo => foo.type === ownProps.type)
+    foos: (state.data.foos || []).filter(foo => foo.type === ownProps.type),
   }
 }
 const FoosContainer = connect(mapStateToProps)(Foos)
@@ -73,13 +73,13 @@ jest.mock('fetch-normalize-data', () => {
     if (url === 'https://momarx.com/failFoos') {
       return {
         errors: [],
-        status: 400
+        status: 400,
       }
     }
     if (url === 'https://momarx.com/successFoos') {
       return {
         data: mockFoos,
-        status: 200
+        status: 200,
       }
     }
     return actualModule.fetchData(url, config)
@@ -87,9 +87,10 @@ jest.mock('fetch-normalize-data', () => {
   return {
     ...actualModule,
     fetchToSuccessOrFailData: (reducer, config) =>
-      actualModule.fetchToSuccessOrFailData(reducer,
-        Object.assign({}, config, { fetchData: mockFetchData})
-      )
+      actualModule.fetchToSuccessOrFailData(
+        reducer,
+        Object.assign({}, config, { fetchData: mockFetchData })
+      ),
   }
 })
 
@@ -99,17 +100,17 @@ describe('redux-thunk-data with Foos basic usage', () => {
       // given
       const store = createStore(rootReducer, storeEnhancer)
       const expectedFoos = mockFoos
-        .filter(mockFoo => mockFoo.type === "good")
+        .filter(mockFoo => mockFoo.type === 'good')
         .map(mockFoo => ({
           ...mockFoo,
-          __ACTIVITIES__: ["/successFoos"],
+          __ACTIVITIES__: ['/successFoos'],
         }))
 
       // when
       mount(
         <Provider store={store}>
           <FoosContainer
-            apiPath='/successFoos'
+            apiPath="/successFoos"
             handleSuccessExpectation={handleSuccessExpectation}
             type="good"
           />
@@ -121,7 +122,6 @@ describe('redux-thunk-data with Foos basic usage', () => {
         expect(foos).toEqual(expectedFoos)
         done()
       }
-
     })
   })
 
@@ -134,7 +134,7 @@ describe('redux-thunk-data with Foos basic usage', () => {
       mount(
         <Provider store={store}>
           <FoosContainer
-            apiPath='/failFoos'
+            apiPath="/failFoos"
             handleFailExpectation={handleFailExpectation}
           />
         </Provider>
