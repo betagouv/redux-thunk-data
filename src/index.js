@@ -1,4 +1,6 @@
 import {
+  API_ERROR,
+  SERVER_ERROR,
   ASSIGN_DATA,
   DELETE_DATA,
   MERGE_DATA,
@@ -23,6 +25,8 @@ import {
 } from 'fetch-normalize-data'
 
 export {
+  API_ERROR,
+  SERVER_ERROR,
   ASSIGN_DATA,
   DELETE_DATA,
   MERGE_DATA,
