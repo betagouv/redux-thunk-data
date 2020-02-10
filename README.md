@@ -2,7 +2,7 @@
 
 A lib for fetching normalized data in a redux store through thunks.
 
-See the full [documentation](https://redux-thunk-data.netlify.com) for further complex use cases with several collections of data.
+See this [post](https://medium.com/pass-culture/2-an-open-source-app-94d9de8d6eee) for a presentation based on the pass culture project.
 
 [![CircleCI](https://circleci.com/gh/betagouv/redux-thunk-data/tree/master.svg?style=svg)](https://circleci.com/gh/betagouv/redux-thunk-data/tree/master)
 [![npm version](https://img.shields.io/npm/v/redux-thunk-data.svg?style=flat-square)](https://npmjs.org/package/redux-thunk-data)
