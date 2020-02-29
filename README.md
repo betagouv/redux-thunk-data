@@ -93,7 +93,7 @@ const mapStateToProps = state => ({ foos: state.data.foos })
 export default connect(mapStateToProps)(Foos)
 ```
 
-NOTE: We could also used a handleSuccess in the requestData api, in order to grab the action.data foos in that simple case:
+NOTE: We could also used a handleSuccess in the requestData api, in order to grab the action.data foos. In that case, code to be modified is:
 
 ```javascript
 constructor () {
@@ -155,26 +155,22 @@ const Foos = () => {
 
   const [error, setError] = useState(null)
 
-
   const foos = useSelector(state => state.data.foos)
-
 
   const handleFooClick = foo => () =>
     dispatch(requestData({
       apiPath: '/foos',
-      body: {
-        isOkay: !foo.isOkay
-      },
+      body: { isOkay: !foo.isOkay },
       method: 'PUT'
       handleFail: (state, action) => setError(action.payload.error)
     }))
-
 
   useEffect(() =>
     dispatch(requestData({
       apiPath: '/foos',
       handleFail: (state, action) => setError(action.payload.error)
     })), [dispatch])
+
 
   if (error) {
     return error
