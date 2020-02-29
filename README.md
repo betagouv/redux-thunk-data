@@ -30,14 +30,30 @@ const store = createStore(rootReducer, storeEnhancer)
 Then you can request data from your api that will be stored
 in the state.data
 
+### react old school
+
 ```javascript
-import React, { Fragment } from 'react'
+import React, { PureComponent } from 'react'
 import { requestData } from 'redux-thunk-data'
 
-class Foos extends Component {
+
+class Foos extends PureComponent {
   constructor () {
     super()
     this.state = { error: null }
+  }
+
+  handleFooClick = foo => () => {
+    const { dispatch } = this.props
+    dispatch(requestData({
+      apiPath: '/foos',
+      body: {
+        isOkay: !foo.isOkay
+      },
+      method: 'PUT'
+      handleFail: (state, action) =>
+        this.setState({ error: action.payload.error })
+    }))
   }
 
   componentDidMount () {
@@ -45,7 +61,7 @@ class Foos extends Component {
     dispatch(requestData({
       apiPath: '/foos',
       handleFail: (state, action) =>
-        this.setState({ error: action.error })
+        this.setState({ error: action.payload.error })
     }))
   }
 
@@ -58,21 +74,23 @@ class Foos extends Component {
     }
 
     return (
-      <Fragment>
-        {foos.map(foo => (
-          <div key={foo.id}> {foo.text} </div>
+      <>
+        {(foos || []).map(foo => (
+          <button
+            key={foo.id}
+            onClick={this.handleFooClick(foo)}
+            type="button"
+          >
+            {foo.isOkay}
+          </button>
         ))}
-      </Fragment>
+      </>
     )
   }
 }
 
-function mapStateToProps (state) {
-  return {
-    foos: state.data.foos
-  }
-}
-export default connect(mapStateToProps)(Foo)
+const mapStateToProps = state => ({ foos: state.data.foos })
+export default connect(mapStateToProps)(Foos)
 ```
 
 NOTE: We could also used a handleSuccess in the requestData api, in order to grab the action.data foos in that simple case:
@@ -82,20 +100,98 @@ constructor () {
   this.state = { error: null, foos: [] }
 }
 
+handleFooClick = foo => () => {
+  const { dispatch } = this.props
+  dispatch(requestData({
+    apiPath: '/foos',
+    body: {
+      isOkay: !foo.isOkay
+    },
+    method: 'PUT'
+    handleFail: (state, action) =>
+      this.setState({ error: action.error })
+    handleSuccess: (state, action) => {
+      const { foos } = this.props
+      const nextFoos = foos.map(foo => {
+        if (foo.id === action.payload.datum.id) {
+          return {...foo, action.payload.datum }
+        }
+        return foo
+      })
+      this.setState({ foos: nextFoos })
+    },
+  }))
+}
+
 componentDidMount () {
   const { dispatch } = this.props
   dispatch(requestData({
     apiPath: '/foos',
-    handleFail: () => this.setState({ error: action.error }),
-    handleSuccess: () => this.setState({ foos: action.data }),
+    handleFail: (state, action) => this.setState({ error: action.payload.error }),
+    handleSuccess: (state, action) => this.setState({ foos: action.payload.data }),
     method:'GET'
   }))
 }
 
 render () {
-  const { error, foos } = this.setState
+  const { error, foos } = this.state
   ...
 }
 ```
 
 But if your rendered foos array should be coming from a memoizing merging (and potentially normalized) (and potentially selected from inter data filter conditions) state of foos, then syntax goes easier if you pick from the connected redux store lake of data.
+
+
+
+### react hooks school
+
+```javascript
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { requestData } from 'redux-thunk-data'
+
+const Foos = () => {
+  const dispatch = useDispatch()
+
+  const [error, setError] = useState(null)
+
+
+  const foos = useSelector(state => state.data.foos)
+
+
+  const handleFooClick = foo => () =>
+    dispatch(requestData({
+      apiPath: '/foos',
+      body: {
+        isOkay: !foo.isOkay
+      },
+      method: 'PUT'
+      handleFail: (state, action) => setError(action.payload.error)
+    }))
+
+
+  useEffect(() =>
+    dispatch(requestData({
+      apiPath: '/foos',
+      handleFail: (state, action) => setError(action.payload.error)
+    })), [dispatch])
+
+  if (error) {
+    return error
+  }
+
+  return (
+    <>
+      {(foos || []).map(foo => (
+        <button
+          key={foo.id}
+          onClick={handleFooClick(foo)}
+          type="button"
+        >
+          {foo.isOkay}
+        </button>
+      ))}
+    </>
+  )
+}
+```
