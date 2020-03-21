@@ -6,7 +6,7 @@ import {
 export const requestData = config => (dispatch, getState, argument) => {
   const { data } = getState()
   const reducer = [data, dispatch]
-  const fetchConfig = Object.assign({}, config, argument)
+  const fetchConfig = { ...argument, ...config }
   dispatch(_requestData(config))
   return fetchToSuccessOrFailData(reducer, fetchConfig)
 }
