@@ -2,7 +2,7 @@
 
 A lib for fetching normalized data in a redux store through thunks.
 
-Inspiration was taken from redux [advices](ttps://redux.js.org/advanced/async-actions) with async actions. List of other frameworks like this could be found [here] (https://twitter.com/acemarke/status/1226721204725309442). Also, see this [post](https://medium.com/pass-culture/2-an-open-source-app-94d9de8d6eee) for a presentation based on the pass culture project.
+Inspiration was taken from redux [advices](https://redux.js.org/advanced/async-actions) with async actions. List of other frameworks like this could be found [here](https://twitter.com/acemarke/status/1226721204725309442). Also, see this [post](https://medium.com/pass-culture/2-an-open-source-app-94d9de8d6eee) for a presentation based on the pass culture project.
 
 [![CircleCI](https://circleci.com/gh/betagouv/redux-thunk-data/tree/master.svg?style=svg)](https://circleci.com/gh/betagouv/redux-thunk-data/tree/master)
 [![npm version](https://img.shields.io/npm/v/redux-thunk-data.svg?style=flat-square)](https://npmjs.org/package/redux-thunk-data)
