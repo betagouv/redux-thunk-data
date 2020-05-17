@@ -9,7 +9,8 @@ Inspiration was taken from redux [advices](https://redux.js.org/advanced/async-a
 
 ## Basic Usage
 
-You need to install a redux-thunk setup with the dataReducer from `fetch-normalize-data`:
+You need to install a redux-thunk setup with the dataReducer from `fetch-normalize-data`.
+You can also use the requestsReducer to have a status state of the request :
 
 ```javascript
 import {
@@ -18,12 +19,15 @@ import {
   createStore
 } from 'redux'
 import thunk from 'redux-thunk'
-import { createDataReducer } from 'redux-thunk-data'
+import { createDataReducer, createRequestsReducer } from 'redux-thunk-data'
 
 const storeEnhancer = applyMiddleware(
   thunk.withExtraArgument({ rootUrl: "https://momarx.com" })
 )
-const rootReducer = combineReducers({ data: createDataReducer({ foos: [] }) })
+const rootReducer = combineReducers({
+  data: createDataReducer({ foos: [] }),
+  requests: createRequestsReducer()
+})
 const store = createStore(rootReducer, storeEnhancer)
 ```
 
@@ -66,8 +70,12 @@ class Foos extends PureComponent {
   }
 
   render () {
-    const { foos } = this.props
+    const { foos, isFoosPending } = this.props
     const { error } = this.state
+
+    if (isFoosPending) {
+      return 'Loading foos...'
+    }
 
     if (error) {
       return error
@@ -89,7 +97,10 @@ class Foos extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({ foos: state.data.foos })
+const mapStateToProps = state => ({
+  foos: state.data.foos,
+  isFoosPending: (state.requests.foos || {}).isPending
+})
 export default connect(mapStateToProps)(Foos)
 ```
 
@@ -155,7 +166,13 @@ const Foos = () => {
 
   const [error, setError] = useState(null)
 
-  const foos = useSelector(state => state.data.foos)
+
+  const foos = useSelector(state =>
+    state.data.foos)
+
+  const { isPending: isFoosPending } = useSelector(state =>
+    state.requests.foos) || {}
+
 
   const handleFooClick = foo => () =>
     dispatch(requestData({
@@ -165,12 +182,17 @@ const Foos = () => {
       handleFail: (state, action) => setError(action.payload.error)
     }))
 
+
   useEffect(() =>
     dispatch(requestData({
       apiPath: '/foos',
       handleFail: (state, action) => setError(action.payload.error)
     })), [dispatch])
 
+
+  if (isFoosPending) {
+    return 'Loading foos...'
+  }
 
   if (error) {
     return error
