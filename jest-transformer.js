@@ -1,9 +1,8 @@
 const config = {
   babelrc: false,
   plugins: [
-    ["@babel/plugin-proposal-decorators", { legacy: true }],
     ["@babel/plugin-proposal-class-properties", { loose: true }],
-    "transform-es2015-modules-commonjs"
+    "@babel/plugin-transform-modules-commonjs"
   ],
   presets: [
     [

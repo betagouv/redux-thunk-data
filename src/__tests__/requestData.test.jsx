@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import 'babel-polyfill'
+import '@babel/polyfill'
 import { mount } from 'enzyme'
 import { createDataReducer } from 'fetch-normalize-data'
 import PropTypes from 'prop-types'
