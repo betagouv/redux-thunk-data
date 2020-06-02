@@ -1,0 +1,11 @@
+{
+  "ignore": ["src/**/__specs__"],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    ["@babel/plugin-proposal-decorators", { decoratorsBeforeExport: false }],
+  ],
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ]
+}
