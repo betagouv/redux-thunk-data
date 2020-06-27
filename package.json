@@ -1,16 +1,22 @@
 {
   "name": "redux-thunk-data",
+  "description": "A lib for fetching normalized data in a redux store through thunks.",
   "version": "1.10.10",
   "private": false,
   "main": "lib/index.js",
   "license": "MPL-2.0",
-  "dependencies": {
-    "fetch-normalize-data": "1.10.14"
-  },
-  "description": "A lib for fetching normalized data in a redux store through thunks.",
+  "keywords": [
+    "redux",
+    "thunk",
+    "data",
+    "normalizer"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/betagouv/redux-thunk-data"
+  },
+  "dependencies": {
+    "fetch-normalize-data": "1.10.14"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -41,12 +47,6 @@
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0"
   },
-  "keywords": [
-    "redux",
-    "thunk",
-    "data",
-    "normalizer"
-  ],
   "scripts": {
     "compile": "rm -rf lib && npx babel -d lib/ --ignore tests src/",
     "format:js": "prettier-eslint --write './src/**/*.{js,jsx}'",
@@ -56,5 +56,10 @@
     "prepublish": "npm run compile",
     "test": "yarn jest --env=jsdom ./src",
     "watch": "nodemon --watch src --exec \"npm run compile\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "./precommit.sh"
+    }
   }
 }
