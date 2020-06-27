@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "license": "MPL-2.0",
   "dependencies": {
-    "fetch-normalize-data": "1.10.10"
+    "fetch-normalize-data": "1.10.14"
   },
   "description": "A lib for fetching normalized data in a redux store through thunks.",
   "repository": {
@@ -24,7 +24,7 @@
     "babel-jest": "^26.0.1",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
-    "eslint": "^6.3.0",
+    "eslint": "^7.3.1",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jest": "^22.7.1",
     "eslint-plugin-jsx-a11y": "^6.2.1",
