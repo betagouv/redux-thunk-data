@@ -3057,11 +3057,12 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
-fetch-normalize-data@1.10.14:
-  version "1.10.14"
-  resolved "https://registry.yarnpkg.com/fetch-normalize-data/-/fetch-normalize-data-1.10.14.tgz#1dea4754a4190c67036f7d6679fd65fbec5538e9"
-  integrity sha512-pkT9RMGz11drlb0mYuuK+FDIxDXmjTsohWaRbICOiKuii73YH0hh2OSF6EX90DQ9OL4LIu3IXbJtws5PceKlZg==
+fetch-normalize-data@1.10.16-rc1:
+  version "1.10.16-rc1"
+  resolved "https://registry.yarnpkg.com/fetch-normalize-data/-/fetch-normalize-data-1.10.16-rc1.tgz#1763c99d044475ad051c0b7c62d86f3e5c1112f3"
+  integrity sha512-bZVT1PGUpgT0t71ARwzWp+WZ92UuoaKsU5wfh4JUKcUz9zJ6zFCTYfKdoQbdQl7GNVc9n00pfXAHyeZGooF2rg==
   dependencies:
+    lodash.uniq "^4.5.0"
     lodash.uniqby "^4.7.0"
     re-reselect "^3.4.0"
     reselect "^3.0.1"
@@ -4600,6 +4601,11 @@ lodash.unescape@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/lodash.unescape/-/lodash.unescape-4.0.1.tgz#bf2249886ce514cda112fae9218cdc065211fc9c"
   integrity sha1-vyJJiGzlFM2hEvrpIYzcBlIR/Jw=
+
+lodash.uniq@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
+  integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
 lodash.uniqby@^4.7.0:
   version "4.7.0"
