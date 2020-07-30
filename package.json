@@ -16,7 +16,7 @@
     "url": "https://github.com/betagouv/redux-thunk-data"
   },
   "dependencies": {
-    "fetch-normalize-data": "1.10.18-rc2"
+    "fetch-normalize-data": "1.10.18-rc4"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -48,7 +48,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "compile": "rm -rf lib && npx babel -d lib/ --ignore src/**/__tests__ src/",
+    "compile": "rm -rf lib && npx babel -d lib/ --ignore **/__tests__ src/",
     "format:js": "prettier-eslint --write './src/**/*.{js,jsx}'",
     "postinstall": "if [ -d \"src/\" ]; then npm run compile; fi",
     "precommit": "./precommit.sh",
