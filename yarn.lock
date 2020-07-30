@@ -3057,10 +3057,10 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
-fetch-normalize-data@1.10.19:
-  version "1.10.19"
-  resolved "https://registry.yarnpkg.com/fetch-normalize-data/-/fetch-normalize-data-1.10.19.tgz#997ac9ce0c9fb69bf77c5ec02b95765244cb1bc1"
-  integrity sha512-QaKjRntkC20HtwvUPLkFs+AkOANK7N5jGsQsw/tq42efXFccPJR8do7GJ3sxJKpmotvAm/CwaoEpmEDKwf5iiQ==
+fetch-normalize-data@1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/fetch-normalize-data/-/fetch-normalize-data-1.11.0.tgz#8a02baecd84462f843f7b59c17d532716650c8f9"
+  integrity sha512-WxhwDll2ccKOaxUm7dp8aNRZ9Qk99XhAjkaXlVqgtGx36waZQltult1XCboAr5PVlcIhGhY5ZGN4P09vonwbSg==
   dependencies:
     lodash.uniq "^4.5.0"
     lodash.uniqby "^4.7.0"
