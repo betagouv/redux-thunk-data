@@ -16,7 +16,7 @@
     "url": "https://github.com/betagouv/redux-thunk-data"
   },
   "dependencies": {
-    "fetch-normalize-data": "1.14.3"
+    "fetch-normalize-data": "1.15.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",

@@ -1,7 +1,7 @@
 import {
   API_ERROR,
   ASSIGN_DATA,
-  COMMIT_DATA,
+  ACTIVATE_DATA,
   DELETE_DATA,
   DELETE_REQUESTS,
   MERGE_DATA,
@@ -9,8 +9,8 @@ import {
   RESET_DATA,
   SERVER_ERROR,
   SET_DATA,
+  activateData,
   assignData,
-  commitData,
   deleteData,
   deleteRequests,
   createDataReducer,
@@ -36,8 +36,8 @@ import {
 
 export {
   API_ERROR,
+  ACTIVATE_DATA,
   ASSIGN_DATA,
-  COMMIT_DATA,
   DELETE_DATA,
   DELETE_REQUESTS,
   MERGE_DATA,
@@ -45,8 +45,8 @@ export {
   RESET_DATA,
   SERVER_ERROR,
   SET_DATA,
+  activateData,
   assignData,
-  commitData,
   createDataReducer,
   createRequestsReducer,
   deleteData,
