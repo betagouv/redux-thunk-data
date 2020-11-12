@@ -3,8 +3,8 @@ import '@babel/polyfill'
 import { mount } from 'enzyme'
 import { createDataReducer } from 'fetch-normalize-data'
 import PropTypes from 'prop-types'
-import React, { Component, Fragment } from 'react'
-import { connect, Provider } from 'react-redux'
+import React, { useEffect } from 'react'
+import { Provider, useDispatch, useSelector } from 'react-redux'
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunk from 'redux-thunk'
 
@@ -20,9 +20,22 @@ const storeEnhancer = applyMiddleware(
 )
 const rootReducer = combineReducers({ data: createDataReducer({ foos: [] }) })
 
-class Foos extends Component {
-  componentDidMount() {
-    const { apiPath, dispatch, handleFailExpectation } = this.props
+const Foos = ({
+  apiPath,
+  handleFailExpectation,
+  handleSuccessExpectation,
+  type,
+}) => {
+  const dispatch = useDispatch()
+
+  const foos = useSelector(state =>
+    (state.data.foos || []).filter(foo => foo.type === type)
+  )
+  if (foos && foos.length) {
+    handleSuccessExpectation(foos)
+  }
+
+  useEffect(() => {
     dispatch(
       requestData({
         apiPath,
@@ -30,42 +43,23 @@ class Foos extends Component {
         stateKey: 'foos',
       })
     )
-  }
+  }, [apiPath])
 
-  render() {
-    const { foos, handleSuccessExpectation } = this.props
-
-    if (foos && foos.length) {
-      handleSuccessExpectation(foos)
-    }
-
-    return (
-      <Fragment>
-        {(foos || []).map(foo => (
-          <div key={foo.id}>{foo.text}</div>
-        ))}
-      </Fragment>
-    )
-  }
+  return (foos || []).map(foo => (<div key={foo.id}>
+    {foo.text}
+  </div>))
 }
 Foos.defaultProps = {
-  foos: null,
   handleFailExpectation: () => ({}),
   handleSuccessExpectation: () => ({}),
+  type: null,
 }
 Foos.propTypes = {
   apiPath: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  foos: PropTypes.arrayOf(PropTypes.shape()),
   handleFailExpectation: PropTypes.func,
   handleSuccessExpectation: PropTypes.func,
+  type: PropTypes.string,
 }
-function mapStateToProps(state, ownProps) {
-  return {
-    foos: (state.data.foos || []).filter(foo => foo.type === ownProps.type),
-  }
-}
-const FoosContainer = connect(mapStateToProps)(Foos)
 
 jest.mock('fetch-normalize-data', () => {
   const actualModule = jest.requireActual('fetch-normalize-data')
@@ -103,13 +97,13 @@ describe('redux-thunk-data with Foos basic usage', () => {
         .filter(mockFoo => mockFoo.type === 'good')
         .map(mockFoo => ({
           ...mockFoo,
-          __ACTIVITIES__: ['/successFoos'],
+          __TAGS__: ['/successFoos'],
         }))
 
       // when
       mount(
         <Provider store={store}>
-          <FoosContainer
+          <Foos
             apiPath="/successFoos"
             handleSuccessExpectation={handleSuccessExpectation}
             type="good"
@@ -119,7 +113,7 @@ describe('redux-thunk-data with Foos basic usage', () => {
 
       // then
       function handleSuccessExpectation(foos) {
-        expect(foos).toEqual(expectedFoos)
+        expect(foos).toStrictEqual(expectedFoos)
         done()
       }
     })
@@ -133,7 +127,7 @@ describe('redux-thunk-data with Foos basic usage', () => {
       // when
       mount(
         <Provider store={store}>
-          <FoosContainer
+          <Foos
             apiPath="/failFoos"
             handleFailExpectation={handleFailExpectation}
           />
