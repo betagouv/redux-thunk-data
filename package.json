@@ -16,7 +16,7 @@
     "url": "https://github.com/betagouv/redux-thunk-data"
   },
   "dependencies": {
-    "fetch-normalize-data": "1.15.1"
+    "fetch-normalize-data": "1.16.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -38,7 +38,7 @@
     "husky": "^4.2.5",
     "jest": "^25.1.0",
     "jest-environment-jsdom": "^25.1.0",
-    "jest-fetch-mock": "^2.1.1",
+    "jest-fetch-mock": "^3.0.3",
     "nodemon": "^2.0.4",
     "prettier-eslint-cli": "^5.0.0",
     "react": "^16.9.0",
