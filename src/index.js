@@ -30,7 +30,10 @@ import {
   resetData,
   selectEntitiesByKeyAndActivityTagsAndStrictness,
   selectEntitiesByKeyAndJoin,
+  selectEntityByKeyAndActivityUuid,
   selectEntityByKeyAndId,
+  selectEntityByKeyAndJoin,
+  selectValueByEntityAndPath,
   setData,
 } from 'fetch-normalize-data'
 
@@ -66,7 +69,10 @@ export {
   resetData,
   selectEntitiesByKeyAndActivityTagsAndStrictness,
   selectEntitiesByKeyAndJoin,
+  selectEntityByKeyAndActivityUuid,
   selectEntityByKeyAndId,
+  selectEntityByKeyAndJoin,
+  selectValueByEntityAndPath,
   setData,
 }
 
