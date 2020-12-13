@@ -33,7 +33,8 @@ import {
   selectEntityByActivityIdentifier,
   selectEntityByKeyAndId,
   selectEntityByKeyAndJoin,
-  selectValueByEntityAndPath,
+  selectEntityByKeyAndNormalizer,
+  selectValueByWalk,
   setData,
 } from 'fetch-normalize-data'
 
@@ -72,7 +73,8 @@ export {
   selectEntityByActivityIdentifier,
   selectEntityByKeyAndId,
   selectEntityByKeyAndJoin,
-  selectValueByEntityAndPath,
+  selectEntityByKeyAndNormalizer,
+  selectValueByWalk,
   setData,
 }
 
