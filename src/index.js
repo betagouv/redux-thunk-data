@@ -34,6 +34,7 @@ import {
   selectEntityByKeyAndId,
   selectEntityByKeyAndJoin,
   selectEntityByKeyAndNormalizer,
+  selectRequestByConfig,
   selectValueByWalk,
   setData,
 } from 'fetch-normalize-data'
@@ -74,6 +75,7 @@ export {
   selectEntityByKeyAndId,
   selectEntityByKeyAndJoin,
   selectEntityByKeyAndNormalizer,
+  selectRequestByConfig,
   selectValueByWalk,
   setData,
 }

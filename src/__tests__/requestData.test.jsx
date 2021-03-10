@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 import '@babel/polyfill'
 import { mount } from 'enzyme'
-import { createDataReducer } from 'fetch-normalize-data'
+import { createDataReducer, createRequestsReducer } from 'fetch-normalize-data'
 import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
 import { Provider, useDispatch, useSelector } from 'react-redux'
@@ -18,7 +18,10 @@ const mockFoos = [
 const storeEnhancer = applyMiddleware(
   thunk.withExtraArgument({ rootUrl: 'https://momarx.com' })
 )
-const rootReducer = combineReducers({ data: createDataReducer({ foos: [] }) })
+const rootReducer = combineReducers({
+  data: createDataReducer({ foos: [] }),
+  requests: createRequestsReducer(),
+})
 
 const Foos = ({
   apiPath,
