@@ -1,10 +1,15 @@
 import {
   fetchToSuccessOrFailData,
+  requestActivities as _requestActivities,
   requestData as _requestData,
   selectRequestByConfig,
 } from 'fetch-normalize-data'
 
-export const requestData = config => (dispatch, getState, defaultConfig) => {
+const _request = requestMethod => config => (
+  dispatch,
+  getState,
+  defaultConfig
+) => {
   const state = getState()
   const reducer = [state.data, dispatch]
   const fetchConfig = { ...defaultConfig, ...config }
@@ -15,9 +20,12 @@ export const requestData = config => (dispatch, getState, defaultConfig) => {
     if (isSuccess) return
   }
 
-  dispatch(_requestData(config))
+  dispatch(requestMethod(config))
 
   return fetchToSuccessOrFailData(reducer, fetchConfig)
 }
+
+export const requestActivities = _request(_requestActivities)
+export const requestData = _request(_requestData)
 
 export default requestData
