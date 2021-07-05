@@ -12,7 +12,9 @@ const _request = requestMethod => config => (
 ) => {
   const state = getState()
   const reducer = [state.data, dispatch]
-  const fetchConfig = { ...defaultConfig, ...config }
+
+  const action = requestMethod(config)
+  const fetchConfig = { ...defaultConfig, ...action.config }
 
   const { requestOnlyOnce } = config || {}
   if (requestOnlyOnce) {
@@ -20,7 +22,7 @@ const _request = requestMethod => config => (
     if (isSuccess) return
   }
 
-  dispatch(requestMethod(config))
+  dispatch(action)
 
   return fetchToSuccessOrFailData(reducer, fetchConfig)
 }
