@@ -100,7 +100,7 @@ describe('redux-thunk-data with Foos basic usage', () => {
         .filter(mockFoo => mockFoo.type === 'good')
         .map(mockFoo => ({
           ...mockFoo,
-          lastBackendDateModified: undefined,
+          __remote__: mockFoo,
           __tags__: ['/successFoos'],
         }))
 
